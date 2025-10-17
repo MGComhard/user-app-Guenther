@@ -1,0 +1,14 @@
+
+doctype html
+html
+  head
+    title= title
+  body
+    include navigation.pug
+    h1= title
+    p Kontaktieren Sie uns über das folgende Formular:
+    form(method="POST", action="/contact")
+      input(type="text", name="name", placeholder="Ihr Name", required)
+      input(type="email", name="email", placeholder="Ihre E-Mail", required)
+      textarea(name="message", placeholder="Ihre Nachricht", required)
+      button(type="submit") Absenden

@@ -1,0 +1,10 @@
+
+<%- include('navigation') %>
+<h1><%= title %></h1>
+<p>Kontaktformular:</p>
+<form method="POST" action="/contact">
+  <input type="text" name="name" placeholder="Name" required>
+  <input type="email" name="email" placeholder="E-Mail" required>
+  <textarea name="message" placeholder="Nachricht" required></textarea>
+  <button type="submit">Absenden</button>
+</form>

@@ -1,0 +1,14 @@
+
+doctype html
+html
+  head
+    title= Kontaktseite (pug)
+  body
+    include navigation.pug
+    h1= title
+    p Kontaktformular (als pug Template):
+    form(method="POST", action="/contact")
+      input(type="text", name="name", placeholder="Name", required)
+      input(type="email", name="email", placeholder="E-Mail", required)
+      textarea(name="message", placeholder="Nachricht", required)
+      button(type="submit") Absenden
