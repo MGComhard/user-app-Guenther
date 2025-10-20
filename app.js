@@ -56,9 +56,19 @@ app.post('/produkt-hinzufuegen', async (req, res) => {
   }
 });
 
+pool.getConnection()
+  .then(conn => {
+    console.log('✅ Verbindung zur Datenbank erfolgreich');
+    conn.release();
 
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
-app.listen(PORT, HOST, () => {
-  console.log(`🟢 Server läuft auf http://${HOST}:${PORT}`);
-});
+    const PORT = process.env.PORT || 3000;
+    const HOST = process.env.SERVER_HOST || 'localhost';
+
+    app.listen(PORT, HOST, () => {
+      console.log(`🟢 Server läuft auf http://${HOST}:${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error('Datenbankverbindung fehlgeschlagen:', err);
+    process.exit(1);
+  });
