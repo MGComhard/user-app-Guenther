@@ -1,0 +1,24 @@
+<% layout('layout') %>
+
+<section class="form-section">
+  <h1>Registrieren</h1>
+  <p>Erstelle ein neues Kundenkonto, um Produkte zu kaufen und Nachrichten zu senden.</p>
+
+ <form method="POST" action="/register" class="form-box">
+  <label for="vorname">Vorname</label>
+  <input type="text" name="vorname" id="vorname" required />
+
+  <label for="nachname">Nachname</label>
+  <input type="text" name="nachname" id="nachname" required />
+
+  <label for="email">E-Mail-Adresse</label>
+  <input type="email" name="email" id="email" required />
+
+  <label for="passwort">Passwort</label>
+  <input type="password" name="passwort" id="passwort" required />
+
+  <button type="submit">Jetzt registrieren</button>
+</form>
+
+  <p>Schon registriert? <a href="/login">Hier einloggen</a></p>
+</section>
