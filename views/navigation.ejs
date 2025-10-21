@@ -1,5 +1,19 @@
-<nav class="navbar">
-  <a href="/">Home</a>
-  <a href="/about">Über uns</a>
-  <a href="/contact">Kontakt</a>
-</nav>
+<div class="navbar">
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/shop">Shop</a>
+    <a href="/about">Über uns</a>
+    <a href="/contact">Kontakt</a>
+  </div>
+
+  <div class="nav-auth">
+    <% if (isLoggedIn) { %>
+      <form method="POST" action="/logout">
+        <button class="logout-button">Logout</button>
+      </form>
+    <% } else { %>
+      <a href="/login">Login</a>
+      <a href="/register">Registrieren</a>
+    <% } %>
+  </div>
+</div>
