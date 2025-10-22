@@ -1,12 +1,13 @@
 import express from 'express';
 import engine from 'ejs-mate';
-import pool from './db.js';
 import cookieParser from 'cookie-parser';
-import 'dotenv/config';
 import authRoutes from './routes/auth.js';
 import pageRoutes from './routes/pages.js';
 import productsRoutes from './routes/products.js';
 import { exposeLoginStatus } from './middleware/loginStatus.js';
+import { Database } from './utils/database.js';
+import 'dotenv/config';
+
 
 const app = express();
 
@@ -25,19 +26,14 @@ app.use((req, res, next) => {
   next();
 });
 
-pool.getConnection()
-  .then(conn => {
-    console.log('✅ Verbindung zur Datenbank erfolgreich');
-    conn.release();
-
+Database()
+  .then(() => {
     const PORT = process.env.PORT || 3000;
     const HOST = process.env.SERVER_HOST || 'localhost';
-
     app.listen(PORT, HOST, () => {
       console.log(`🟢 Server läuft auf http://${HOST}:${PORT}`);
     });
   })
-  .catch(err => {
-    console.error('Datenbankverbindung fehlgeschlagen:', err);
+  .catch(() => {
     process.exit(1);
   });
