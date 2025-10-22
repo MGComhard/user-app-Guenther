@@ -1,4 +1,7 @@
 <% layout('layout') %>
+<% if (error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
 
 <section class="form-section">
   <h1>Registrieren</h1>

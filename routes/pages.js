@@ -3,7 +3,8 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Startseite' });
+  const error = req.query.error || null;
+  res.render('index', { title: 'Startseite', error });
 });
 
 router.get('/about', (req, res) => {

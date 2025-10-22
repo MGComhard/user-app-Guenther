@@ -6,6 +6,7 @@ import 'dotenv/config';
 import authRoutes from './routes/auth.js';
 import pageRoutes from './routes/pages.js';
 import productsRoutes from './routes/products.js';
+import { exposeLoginStatus } from './middleware/loginStatus.js';
 
 const app = express();
 
@@ -15,13 +16,14 @@ app.set('views', './views');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(exposeLoginStatus);
+app.use(authRoutes);
+app.use(pageRoutes);
+app.use(productsRoutes);
 app.use((req, res, next) => {
   res.locals.isLoggedIn = !!req.cookies.token;
   next();
 });
-app.use(authRoutes);
-app.use(pageRoutes);
-app.use(productsRoutes);
 
 pool.getConnection()
   .then(conn => {

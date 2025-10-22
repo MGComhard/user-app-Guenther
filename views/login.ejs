@@ -1,4 +1,7 @@
 <% layout('layout') %>
+<% if (error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
 
 <form method="POST" action="/login">
   <input type="email" name="email" required />
